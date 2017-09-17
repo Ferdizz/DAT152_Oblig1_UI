@@ -91,8 +91,9 @@ class AppController {
     }
 
     this.box.onSubmit = (member) => {
-      // Code added temporarily to check that the editing of member data works.
-      // this.ui.editMember(member) TODO
+      // Code added temporarily to check that adding/editing member data works.
+      // TODO Fix: Må velge om callback'en skal endre eller legge til medlem
+      // this.ui.editMember(member)
       this.ui.addMember(member)
     }
   }
