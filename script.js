@@ -57,6 +57,7 @@ class AppController {
   constructor(memberlist, addMember) {
     this.memberlist = memberlist;
     this.addMember = addMember;
+    this.buttonClicked = "";
   }
 
   run() {
@@ -92,9 +93,11 @@ class AppController {
 
     this.box.onSubmit = (member) => {
       // Code added temporarily to check that adding/editing member data works.
-      // TODO Fix: Må velge om callback'en skal endre eller legge til medlem
-      // this.ui.editMember(member)
-      this.ui.addMember(member)
+      if(this.buttonClicked == "add"){
+        this.ui.addMember(member)
+      }else(this.buttonClicked == "edit"){
+        this.ui.editMember(member)
+      }
     }
   }
 }
@@ -121,6 +124,7 @@ class UIHandler {
 
     this.btnAddMember = document.getElementById("addMember");
     this.btnAddMember.addEventListener('click', (function() {
+      app.buttonClicked = "add";
       app.box.add();
     }));
   }
@@ -149,6 +153,7 @@ class UIHandler {
     var btnEdit = document.createElement("button");
     btnEdit.innerHTML = "Edit";
     btnEdit.addEventListener('click', (function() {
+      app.buttonClicked = "edit";
       app.ui.editCallback(this.id);
     }).bind(member));
 
